@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,14 @@ namespace tpmodul5_1302204024
         private int id;
         private string title;
         private int playCount;
-
+        
         public SayaTubeVideo(string a)
         {
+            Debug.Assert(a != null && a.Length < 101);
+
+            //Contract.Requires(a != null);
+            //Contract.Requires(a.Length <101);
+
             // Instantiate random number generator using system-supplied value as seed.
             Random b =new Random();
             // Generate and display 5 random integers.
@@ -38,9 +45,26 @@ namespace tpmodul5_1302204024
         //    this.playCount = a;
         //}
 
+        //static int z = 2147483647;
         public void IncreasePlayCount (int a)
         {
-            playCount += a;
+            Debug.Assert(a <= 10000000);
+            //Contract.Requires(a <= 10000000);
+            try
+            {
+                // The following calculation is unchecked and will not
+                // raise an exception.
+
+                //a = checked(z+ a);
+                playCount = checked(playCount + a); 
+                //playCount = playCount + a + z; //uncheked doesnt get error
+            }
+            catch (System.OverflowException e)
+            {
+                // The following line will not be executed.
+                Console.WriteLine("UNCHECKED and CAUGHT:  " + e.ToString());
+            }   
+            
         }
 
         //public string getTitle()
