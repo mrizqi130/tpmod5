@@ -10,6 +10,11 @@ namespace tpmodul5_1302204024
     {
         static void Main(string[] args)
         {
+            SayaTubeVideo a = new SayaTubeVideo("Tutorial Design By Contract – [MUHAMMAD RIZQI ANSHARI]");
+            a.PrintVideoDetails();
+            a.IncreasePlayCount(2);
+            a.PrintVideoDetails();
         }
     }
 }
+
