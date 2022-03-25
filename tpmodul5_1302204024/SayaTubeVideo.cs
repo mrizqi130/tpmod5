@@ -17,60 +17,26 @@ namespace tpmodul5_1302204024
         public SayaTubeVideo(string a)
         {
             Debug.Assert(a != null && a.Length < 101);
-
-            //Contract.Requires(a != null);
-            //Contract.Requires(a.Length <101);
-
-            // Instantiate random number generator using system-supplied value as seed.
             Random b =new Random();
-            // Generate and display 5 random integers.
-            //Console.WriteLine("Five random integer values:");
-            //for (int ctr = 0; ctr <= 4; ctr++)
-            //    Console.Write("{0,15:N0}", b.Next());
-            //Console.WriteLine();
 
-            //for (int ctr = 1; ctr <= 50; ctr++)
-            //{
-            //    Console.Write("{0,3}    ", b.Next(1000, 10000));
-            //    if (ctr % 10 == 0) Console.WriteLine();
-            //}
             this.id = b.Next(10000, 100000);//in range 10000-100000
             this.title = a;
             playCount = 0;
-            //setPlayCount(123);
         }
 
-        //public void setPlayCount(int a)
-        //{
-        //    this.playCount = a;
-        //}
-
-        //static int z = 2147483647;
         public void IncreasePlayCount (int a)
         {
             Debug.Assert(a <= 10000000);
-            //Contract.Requires(a <= 10000000);
             try
             {
-                // The following calculation is unchecked and will not
-                // raise an exception.
-
-                //a = checked(z+ a);
                 playCount = checked(playCount + a); 
-                //playCount = playCount + a + z; //uncheked doesnt get error
             }
             catch (System.OverflowException e)
             {
-                // The following line will not be executed.
                 Console.WriteLine("UNCHECKED and CAUGHT:  " + e.ToString());
             }   
             
         }
-
-        //public string getTitle()
-        //{
-        //    return this.title;
-        //}
 
         public void PrintVideoDetails()
         {
